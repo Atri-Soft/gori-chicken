@@ -229,7 +229,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .orderbar-wa svg{width:20px;height:20px;}
 
 /* ---- HERO ---- */
-#bhero{padding:52px 0 44px;position:relative;}
+#bhero{padding:52px 0 44px;position:relative;overflow:hidden;}
+.bhero-mapbg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.bhero-mapbg iframe{width:100%;height:100%;border:0;filter:grayscale(.5) invert(.92) contrast(.9) brightness(.55);opacity:.6;transform:scale(1.05);}
+.bhero-mapbg::after{content:'';position:absolute;inset:0;background:
+  radial-gradient(70% 55% at 20% 15%, rgba(8,11,16,.25), rgba(8,11,16,.72) 60%),
+  linear-gradient(180deg, rgba(8,11,16,.55) 0%, rgba(8,11,16,.86) 58%, var(--ink-950) 100%);}
+#bhero .container{position:relative;z-index:1;}
+.bhero-pin{
+  display:inline-flex;align-items:center;gap:9px;margin-bottom:20px;
+  background:rgba(12,16,23,.68);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--line-ember);border-radius:999px;padding:7px 16px 7px 11px;
+}
+.bhero-pin .pin-ic{width:22px;height:22px;border-radius:50%;background:var(--ember);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.bhero-pin .pin-ic svg{width:12px;height:12px;color:#1A0900;}
+.bhero-pin .pin-text{font-family:var(--mono);font-size:.7rem;color:var(--text-soft);letter-spacing:.02em;}
+.bhero-pin .pin-text b{color:var(--ember-light);font-weight:700;}
 .bhero-strip{
   display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;
   font-family:var(--mono);font-size:.72rem;color:var(--muted);
@@ -288,18 +303,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .menu-panel.active{display:block;}
 .menu-panel-note{font-family:var(--mono);font-size:.72rem;color:var(--muted-2);margin-bottom:6px;}
 
-.menu-list{display:flex;flex-direction:column;}
-.menu-row{
-  display:flex;align-items:center;gap:14px;padding:20px 0;border-top:1px solid var(--line);
+.menu-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:600px){.menu-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:1040px){.menu-grid{grid-template-columns:1fr 1fr 1fr;}}
+
+.menu-card{
+  position:relative;background:var(--surface-800);border:1px dashed var(--line-strong);border-radius:var(--r-sm);
+  padding:17px;display:flex;flex-direction:column;gap:10px;
+  transition:transform .28s var(--ease), border-color .28s var(--ease), box-shadow .28s var(--ease);
 }
-.menu-row:last-child{border-bottom:1px solid var(--line);}
-.mr-main{flex:1;min-width:0;display:flex;align-items:baseline;gap:10px;}
-.mr-name{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--text);white-space:nowrap;}
-.mr-tag{font-family:var(--mono);font-size:.6rem;color:var(--gold);border:1px solid var(--line-ember);padding:2px 7px;border-radius:4px;text-transform:uppercase;white-space:nowrap;}
-.mr-leader{flex:1;min-width:20px;border-bottom:2px dotted var(--line-strong);height:0;transform:translateY(-4px);}
-.mr-desc{width:100%;flex-basis:100%;font-size:.82rem;color:var(--muted);margin-top:4px;}
-.mr-price{font-family:var(--mono);font-weight:700;color:var(--ember-light);font-size:.94rem;white-space:nowrap;flex-shrink:0;}
-.mr-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.menu-card:hover{transform:translateY(-5px);border-color:var(--ember);border-style:solid;box-shadow:0 20px 44px -18px rgba(0,0,0,.55);}
+.menu-card::before,.menu-card::after{content:'';position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:var(--ink-900);transform:translateY(-50%);display:none;}
+@media(min-width:600px){.menu-card::before,.menu-card::after{display:block;}.menu-card::before{left:-7px;}.menu-card::after{right:-7px;}}
+
+.mc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.mc-icon{width:36px;height:36px;border-radius:9px;background:rgba(255,122,26,.1);border:1px solid var(--line-ember);display:flex;align-items:center;justify-content:center;color:var(--ember-light);flex-shrink:0;}
+.mc-icon svg{width:18px;height:18px;}
+.mc-tag{font-family:var(--mono);font-size:.58rem;color:var(--gold);border:1px solid var(--line-ember);padding:3px 8px;border-radius:4px;text-transform:uppercase;white-space:nowrap;height:fit-content;}
+.mc-name{font-family:var(--serif);font-style:italic;font-size:1.18rem;color:var(--text);}
+.mc-desc{font-size:.82rem;color:var(--muted);min-height:34px;line-height:1.45;}
+.mc-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);}
+.mc-price{font-family:var(--mono);font-weight:700;color:var(--ember-light);font-size:.96rem;}
 
 .qty-stepper{display:flex;align-items:center;gap:0;border:1px solid var(--line-strong);border-radius:var(--r-xs);overflow:hidden;}
 .qty-stepper button{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--ember-light);transition:background .15s;}
@@ -336,6 +360,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .footer-tags span{font-family:var(--mono);font-size:.64rem;color:var(--muted-2);border:1px solid var(--line);padding:5px 10px;border-radius:4px;}
 .footer-bottom{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--mono);font-size:.68rem;color:var(--muted-2);}
 .footer-bottom a{color:var(--ember-light);}
+.footer-credit{color:var(--muted-2);}
+.footer-credit b{color:var(--gold);font-weight:700;}
 
 /* ---- CARRITO — recibo (bottom sheet) ---- */
 .overlay{position:fixed;inset:0;background:rgba(4,5,8,.65);backdrop-filter:blur(3px);z-index:1100;opacity:0;visibility:hidden;transition:opacity .3s var(--ease), visibility .3s;}
@@ -494,7 +520,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 <div id="view-branch">
   <section id="bhero">
+    <div class="bhero-mapbg"><iframe id="bheroMap" src="" loading="lazy" title="Mapa de fondo de la sucursal" tabindex="-1" aria-hidden="true"></iframe></div>
     <div class="container">
+      <div class="bhero-pin">
+        <span class="pin-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12Z"/><circle cx="12" cy="9" r="2.2"/></svg></span>
+        <span class="pin-text">Estás viendo <b id="pinZone">Zona</b> · Cochabamba, Bolivia</span>
+      </div>
       <div class="bhero-strip">
         <span class="ember-txt" id="bheroBranchName">Gori Chicken</span><span class="sep">·</span><span id="bheroZone">Zona</span><span class="sep">·</span><span>Cochabamba</span>
       </div>
@@ -610,6 +641,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <div class="footer-bottom">
         <span>© <span id="year"></span> Gori Chicken · Cochabamba, Bolivia</span>
         <a href="#" id="footerBackLanding">Cambiar de sucursal</a>
+        <span class="footer-credit">Developed by <b>AtriSoft</b></span>
       </div>
     </div>
   </footer>
@@ -830,6 +862,8 @@ function populateBranchPage(b){
   document.getElementById("tbZone").textContent = b.zone;
   document.getElementById("bheroBranchName").textContent = b.name;
   document.getElementById("bheroZone").textContent = b.zone;
+  document.getElementById("bheroMap").src = mapEmbedSrc(b.address);
+  document.getElementById("pinZone").textContent = b.zone;
   document.getElementById("statusValue").textContent = closed ? "Cerrado hoy" : "Abierto hoy";
   document.getElementById("statusDot").classList.toggle("closed", closed);
   document.getElementById("closedDayValue").textContent = b.closedLabel;
@@ -884,13 +918,13 @@ function renderMenu(){
     const cat = MENU[k];
     return `<div class="menu-panel ${i===0?'active':''}" id="panel-${k}">
       <div class="menu-panel-note">// ${cat.note}</div>
-      <div class="menu-list" data-menu-list="${k}"></div>
+      <div class="menu-grid" data-menu-grid="${k}"></div>
     </div>`;
   }).join("");
 
   keys.forEach(k=>{
-    const list = panels.querySelector(`[data-menu-list="${k}"]`);
-    list.innerHTML = MENU[k].items.map(item=>renderMenuRow(item)).join("");
+    const grid = panels.querySelector(`[data-menu-grid="${k}"]`);
+    grid.innerHTML = MENU[k].items.map(item=>renderMenuCard(item)).join("");
   });
 
   rail.querySelectorAll(".cat-pill").forEach(pill=>{
@@ -901,7 +935,7 @@ function renderMenu(){
       const panel = document.getElementById(pill.dataset.target);
       panel.classList.add("active");
       if(window.gsap){
-        gsap.fromTo(panel.querySelectorAll(".menu-row"), {opacity:0,y:10}, {opacity:1,y:0,duration:.35,stagger:.035,ease:"power2.out"});
+        gsap.fromTo(panel.querySelectorAll(".menu-card"), {opacity:0,y:14}, {opacity:1,y:0,duration:.4,stagger:.045,ease:"power2.out"});
       }
     });
   });
@@ -909,7 +943,7 @@ function renderMenu(){
   bindMenuRowEvents();
 }
 
-function renderMenuRow(item){
+function renderMenuCard(item){
   const priceLabel = isVariant(item) ? "desde " + money(Math.min(...item.variants.map(v=>v.price))) : money(item.price);
   let action;
   if(isVariant(item)){
@@ -928,15 +962,19 @@ function renderMenuRow(item){
       </button>`;
   }
   return `
-  <div class="menu-row">
-    <div class="mr-main">
-      <span class="mr-name">${item.name}</span>
-      ${item.tag ? `<span class="mr-tag">${item.tag}</span>` : ""}
-      <span class="mr-leader"></span>
-      <span class="mr-price">${priceLabel}</span>
-      <div class="mr-desc">${item.desc}</div>
+  <div class="menu-card reveal">
+    <div class="mc-top">
+      <span class="mc-icon">${ICONS[item.icon]}</span>
+      ${item.tag ? `<span class="mc-tag">${item.tag}</span>` : ""}
     </div>
-    <div class="mr-actions">${action}</div>
+    <div>
+      <div class="mc-name">${item.name}</div>
+      <div class="mc-desc">${item.desc}</div>
+    </div>
+    <div class="mc-foot">
+      <span class="mc-price">${priceLabel}</span>
+      <div style="display:flex;align-items:center;gap:8px;">${action}</div>
+    </div>
   </div>`;
 }
 
