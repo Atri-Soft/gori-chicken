@@ -4,72 +4,67 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gori Chicken — Brasa & Broaster | Cochabamba</title>
-<meta name="description" content="Gori Chicken: pollo a la brasa y broaster ahumado y crocante. Elegí tu sucursal en Cochabamba y hacé tu pedido en minutos.">
-<meta name="theme-color" content="#070B12">
+<meta name="description" content="Gori Chicken: pollo a la brasa y broaster, ahumado y crocante. Elegí tu sucursal en Cochabamba, mirá el mapa y hacé tu pedido en minutos.">
+<meta name="theme-color" content="#05070C">
 <link rel="icon" href="https://i.imgur.com/7L3dwp2.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   GORI CHICKEN — DESIGN SYSTEM
-   Firma visual: "La Ruta Gori" — mapa-línea que conecta las 4
-   sucursales, y sellos circulares de brasa/broaster.
+   GORI CHICKEN v2 — Sistema de diseño "Fuego & Bruma"
+   Editorial oscuro, navy/negro + naranja brasa, tipografía
+   serif cálida (Fraunces) + Inter. Firma: medallón de sello
+   (brasa/broaster) + mapa real por sucursal.
    ============================================================ */
 :root{
-  /* Navy / negro (base marca) */
-  --bg-950:#050810;
-  --bg-900:#0A0F1B;
-  --bg-800:#0F1626;
-  --surface-800:#121B2E;
-  --surface-700:#182238;
-  --surface-600:#22304A;
-  --border-700:#233049;
-  --border-600:#2C3B58;
+  --bg-950:#05070B;
+  --bg-900:#090C13;
+  --bg-850:#0C1019;
+  --surface-800:#10141F;
+  --surface-700:#151B29;
+  --surface-600:#1B2233;
 
-  /* Naranja (acento marca) */
-  --orange-300:#FFB673;
-  --orange-400:#FF9A45;
+  --line-soft:rgba(255,255,255,.07);
+  --line-med:rgba(255,255,255,.12);
+  --line-gold:rgba(232,190,114,.35);
+
+  --orange-300:#FFB37A;
+  --orange-400:#FF9A52;
   --orange-500:#FF7A1A;
-  --orange-600:#E4610A;
-  --orange-700:#B84D08;
+  --orange-600:#D9600E;
 
-  /* Acentos secundarios tomados del menú original */
-  --gold-400:#F4C767;
-  --teal-400:#2FD4C0;
+  --gold-400:#E8BE72;
+  --gold-300:#F2D39B;
+  --teal-400:#57D9C6;
 
-  /* Grises / texto */
-  --ink-000:#F8FAFD;
-  --ink-100:#E7ECF4;
-  --ink-300:#B7C1D6;
-  --ink-500:#8792A8;
-  --ink-700:#5B6580;
+  --ink-000:#F7F5F0;
+  --ink-200:#D9DCE4;
+  --ink-400:#9298A8;
+  --ink-600:#5D6373;
 
-  --font-display:'Baloo 2', sans-serif;
-  --font-script:'Caveat', cursive;
+  --font-display:'Fraunces', serif;
   --font-body:'Inter', sans-serif;
+  --font-accent:'Caveat', cursive;
 
-  --radius-sm:10px;
-  --radius-md:16px;
-  --radius-lg:24px;
-  --radius-xl:32px;
+  --r-sm:8px;
+  --r-md:14px;
+  --r-lg:20px;
+  --r-xl:28px;
 
-  --shadow-elev:0 20px 50px -20px rgba(0,0,0,.6);
-  --shadow-glow:0 0 0 1px rgba(255,122,26,.15), 0 20px 60px -15px rgba(255,122,26,.25);
-
-  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease:cubic-bezier(.19,1,.22,1);
+  --ease-soft:cubic-bezier(.33,1,.68,1);
 }
 
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+html{-webkit-text-size-adjust:100%;}
 @media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto;}
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
 }
 body{
   margin:0;
   background:var(--bg-950);
-  color:var(--ink-100);
+  color:var(--ink-200);
   font-family:var(--font-body);
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
@@ -79,1302 +74,256 @@ img{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
 button{font-family:inherit;}
 ul{margin:0;padding:0;list-style:none;}
-h1,h2,h3,h4{margin:0;font-family:var(--font-display);font-weight:700;}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);font-weight:500;color:var(--ink-000);}
 p{margin:0;}
+em{font-style:italic;}
 
-/* textured background: subtle wood/noise + navy vignette */
-.grain-bg{
-  position:relative;
+.bg-atmosphere{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(120% 90% at 15% -10%, rgba(255,122,26,.12), transparent 55%),
-    radial-gradient(90% 70% at 100% 0%, rgba(47,212,192,.06), transparent 50%),
-    linear-gradient(180deg, var(--bg-900) 0%, var(--bg-950) 55%, #030509 100%);
+    radial-gradient(60% 45% at 18% 0%, rgba(255,122,26,.10), transparent 60%),
+    radial-gradient(50% 40% at 100% 10%, rgba(87,217,198,.05), transparent 55%),
+    linear-gradient(180deg, var(--bg-900), var(--bg-950) 40%);
 }
-.grain-bg::before{
-  content:'';
-  position:fixed;inset:0;
-  pointer-events:none;
-  opacity:.05;
-  mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  z-index:0;
+.bg-atmosphere::after{
+  content:'';position:absolute;inset:0;opacity:.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
-@media(min-width:768px){.container{padding:0 32px;}}
+.container{position:relative;z-index:1;width:100%;max-width:1120px;margin:0 auto;padding:0 22px;}
+@media(min-width:860px){.container{padding:0 40px;}}
 
 .eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-body);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--orange-400);
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-body);font-weight:700;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-400);
 }
-.eyebrow::before{content:'';width:18px;height:2px;background:var(--orange-500);border-radius:2px;}
+.eyebrow::before{content:'';width:22px;height:1px;background:linear-gradient(90deg, var(--orange-500), transparent);}
 
 .btn{
   appearance:none;border:none;cursor:pointer;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  font-family:var(--font-body);font-weight:700;font-size:15px;
-  padding:14px 22px;border-radius:999px;
-  transition:transform .22s var(--ease-out), box-shadow .22s var(--ease-out), background .22s var(--ease-out);
-  min-height:48px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--font-body);font-weight:600;font-size:14.5px;
+  padding:15px 26px;border-radius:999px;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+  min-height:48px;letter-spacing:.01em;
 }
 .btn:active{transform:scale(.97);}
 .btn-primary{
   background:linear-gradient(135deg,var(--orange-400),var(--orange-600));
   color:#1A0900;
-  box-shadow:0 10px 30px -8px rgba(255,122,26,.55);
+  box-shadow:0 14px 34px -12px rgba(255,122,26,.55);
 }
-.btn-primary:hover{box-shadow:0 14px 38px -8px rgba(255,122,26,.7);transform:translateY(-2px);}
-.btn-ghost{
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border-600);
-  color:var(--ink-100);
+.btn-primary:hover{box-shadow:0 18px 42px -12px rgba(255,122,26,.7);transform:translateY(-2px);}
+.btn-line{
+  background:transparent;
+  border:1px solid var(--line-med);
+  color:var(--ink-000);
 }
-.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:var(--orange-500);}
-.btn-sm{padding:10px 16px;font-size:13px;min-height:38px;}
+.btn-line:hover{border-color:var(--gold-400);color:var(--gold-300);}
+.btn-sm{padding:11px 18px;font-size:13px;min-height:40px;}
 .btn:focus-visible{outline:2px solid var(--orange-400);outline-offset:3px;}
 
 .badge{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11.5px;font-weight:700;letter-spacing:.03em;
-  padding:6px 11px;border-radius:999px;
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:700;letter-spacing:.04em;
+  padding:6px 12px;border-radius:999px;
 }
-.badge-open{background:rgba(47,212,192,.12);color:var(--teal-400);border:1px solid rgba(47,212,192,.3);}
-.badge-closed{background:rgba(255,90,90,.1);color:#FF8A8A;border:1px solid rgba(255,90,90,.28);}
-.badge-dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px currentColor22;}
+.badge-open{background:rgba(87,217,198,.1);color:var(--teal-400);border:1px solid rgba(87,217,198,.28);}
+.badge-closed{background:rgba(255,120,120,.09);color:#FF9E9E;border:1px solid rgba(255,120,120,.25);}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
-
 ::selection{background:var(--orange-500);color:#1A0900;}
-::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar{width:9px;height:9px;}
 ::-webkit-scrollbar-track{background:var(--bg-950);}
 ::-webkit-scrollbar-thumb{background:var(--surface-600);border-radius:8px;}
+[data-reveal]{opacity:1;}
+
 /* ============= PRELOADER ============= */
 .preloader{
-  position:fixed;inset:0;z-index:200;
-  background:var(--bg-950);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
-  transition:opacity .5s var(--ease-out), visibility .5s var(--ease-out);
+  position:fixed;inset:0;z-index:200;background:var(--bg-950);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
+  transition:opacity .6s var(--ease), visibility .6s var(--ease);
 }
 .preloader.is-hidden{opacity:0;visibility:hidden;pointer-events:none;}
-.preloader-mark{width:64px;height:64px;position:relative;}
-.preloader-ring{
-  width:64px;height:64px;border-radius:50%;
-  border:3px solid var(--border-700);
-  border-top-color:var(--orange-500);
-  animation:spin 1s linear infinite;
+.preloader-seal{width:52px;height:52px;border-radius:50%;border:1px solid var(--line-gold);position:relative;}
+.preloader-seal::before{
+  content:'';position:absolute;inset:5px;border-radius:50%;border:2px solid var(--orange-500);
+  border-top-color:transparent;border-right-color:transparent;animation:spin 1.1s linear infinite;
 }
 @keyframes spin{to{transform:rotate(360deg);}}
-.preloader-text{font-family:var(--font-display);font-size:14px;letter-spacing:.08em;color:var(--ink-500);text-transform:uppercase;}
+.preloader-text{font-family:var(--font-display);font-style:italic;font-size:15px;letter-spacing:.03em;color:var(--ink-400);}
 
-/* ============= TOP BAR (branch screen) ============= */
-.brand-topbar{
-  position:absolute;top:0;left:0;right:0;z-index:10;
-  padding:18px 0;
-}
-.brand-topbar .row{display:flex;align-items:center;justify-content:space-between;}
-.brand-lockup{display:flex;align-items:center;gap:10px;}
-.brand-lockup img{width:40px;height:40px;border-radius:12px;object-fit:cover;border:1px solid var(--border-600);}
-.brand-lockup .name{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--ink-000);line-height:1;}
-.brand-lockup .tag{font-size:10.5px;color:var(--orange-400);letter-spacing:.12em;text-transform:uppercase;font-weight:700;}
-.social-pill{
-  display:none;
-  font-size:12.5px;color:var(--ink-500);font-weight:600;
-  border:1px solid var(--border-700);padding:8px 14px;border-radius:999px;
-}
-@media(min-width:640px){.social-pill{display:inline-flex;align-items:center;gap:6px;}}
+/* ============= TOPBAR ============= */
+.topbar{position:absolute;top:0;left:0;right:0;z-index:15;padding:26px 0;}
+.topbar-row{display:flex;align-items:center;justify-content:space-between;}
+.brand-lockup{display:flex;align-items:center;gap:11px;}
+.brand-lockup img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:1px solid var(--line-med);}
+.brand-wordmark{font-family:var(--font-display);font-weight:500;font-size:17px;color:var(--ink-000);line-height:1;letter-spacing:.01em;}
+.brand-wordmark small{display:block;font-family:var(--font-body);font-size:9.5px;color:var(--gold-400);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-top:3px;}
+.topbar-tag{display:none;font-size:12px;color:var(--ink-600);font-weight:600;letter-spacing:.03em;}
+@media(min-width:640px){.topbar-tag{display:block;}}
 
-/* ============= HERO (branch select) ============= */
-.hero{
-  position:relative;
-  padding:96px 0 56px;
-  overflow:hidden;
+/* ============= HERO ============= */
+.hero{position:relative;padding:118px 0 84px;}
+.hero-inner{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:680px;margin:0 auto;}
+.hero h1{
+  font-size:clamp(40px,9vw,72px);line-height:.98;letter-spacing:-.01em;margin:20px 0 22px;font-weight:400;
 }
-.hero-grid{
-  display:grid;
-  gap:40px;
-  align-items:center;
-}
-@media(min-width:960px){
-  .hero-grid{grid-template-columns:1.05fr .95fr;gap:24px;}
-}
-.hero-copy h1{
-  font-size:clamp(38px,8vw,64px);
-  line-height:.98;
-  color:var(--ink-000);
-  letter-spacing:-.01em;
-  margin:14px 0 18px;
-}
-.hero-copy h1 em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--orange-300),var(--orange-500));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.hero-copy p.lede{
-  font-size:16.5px;line-height:1.6;color:var(--ink-300);
-  max-width:46ch;margin-bottom:26px;
-}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
-.hero-stats{display:flex;gap:26px;flex-wrap:wrap;}
-.hero-stat b{display:block;font-family:var(--font-display);font-size:26px;color:var(--ink-000);}
-.hero-stat span{font-size:12px;color:var(--ink-500);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--orange-400);}
+.hero .lede{font-size:17px;line-height:1.65;color:var(--ink-400);max-width:46ch;margin-bottom:34px;}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:52px;}
 
-/* ---- signature: la ruta gori (map) ---- */
-.route-card{
-  position:relative;
-  background:radial-gradient(120% 100% at 30% 0%, rgba(255,122,26,.14), transparent 60%), var(--surface-800);
-  border:1px solid var(--border-700);
-  border-radius:var(--radius-xl);
-  padding:22px 18px 18px;
-  box-shadow:var(--shadow-elev);
+/* signature: sello medallion */
+.seal{
+  position:relative;width:172px;height:172px;margin:0 auto;
 }
-.route-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
-.route-card-head .eyebrow{margin:0;}
-.route-card-head .live{
-  display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-500);font-weight:700;
+.seal-ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:1px dashed var(--line-gold);
 }
-.route-card-head .live i{width:7px;height:7px;border-radius:50%;background:var(--teal-400);box-shadow:0 0 0 4px rgba(47,212,192,.18);animation:pulse 2s ease-in-out infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-.route-svg{width:100%;height:auto;display:block;}
-.route-pin-label{font-family:var(--font-body);font-weight:700;font-size:11px;fill:var(--ink-300);}
-.route-pin-num{font-family:var(--font-display);font-weight:700;font-size:12px;fill:#1A0900;}
+.seal-ring-inner{
+  position:absolute;inset:16px;border-radius:50%;
+  background:radial-gradient(60% 60% at 35% 25%, rgba(255,154,82,.18), transparent 70%), var(--surface-800);
+  border:1px solid var(--line-med);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 30px 60px -20px rgba(255,122,26,.3), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.seal-icon{color:var(--orange-400);}
+.seal-orbit-text{position:absolute;inset:0;animation:spin-slow 26s linear infinite;}
+@keyframes spin-slow{to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion: reduce){.seal-orbit-text{animation:none;}}
 
-/* ============= BRANCH SECTION ============= */
-.branches-section{padding:20px 0 90px;position:relative;}
-.branches-head{max-width:640px;margin:0 auto 34px;text-align:left;}
-.branches-head h2{font-size:clamp(26px,5vw,36px);color:var(--ink-000);margin-top:12px;}
-.branches-head p{color:var(--ink-300);margin-top:12px;font-size:15px;line-height:1.6;}
-
-.branch-grid{
-  display:grid;grid-template-columns:1fr;gap:16px;
+.hero-divider{
+  display:flex;align-items:center;gap:16px;color:var(--ink-600);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  margin-top:44px;
 }
-@media(min-width:700px){.branch-grid{grid-template-columns:1fr 1fr;gap:20px;}}
+.hero-divider::before,.hero-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line-med),transparent);}
+
+/* ============= BRANCHES ============= */
+.branches-section{padding:30px 0 100px;}
+.branches-head{max-width:600px;margin:0 auto 44px;text-align:center;}
+.branches-head h2{font-size:clamp(28px,5vw,40px);margin-top:14px;font-weight:400;}
+.branches-head h2 em{font-style:italic;color:var(--orange-400);}
+.branches-head p{color:var(--ink-400);margin-top:14px;font-size:15px;line-height:1.65;}
+
+.branch-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+@media(min-width:720px){.branch-grid{grid-template-columns:1fr 1fr;gap:22px;}}
 
 .branch-card{
   position:relative;
-  background:linear-gradient(180deg, var(--surface-800), var(--bg-800));
-  border:1px solid var(--border-700);
-  border-radius:var(--radius-lg);
-  padding:22px;
-  display:flex;flex-direction:column;gap:16px;
-  transition:border-color .25s var(--ease-out), transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
-  cursor:pointer;
-}
-.branch-card:hover{border-color:var(--orange-600);transform:translateY(-4px);box-shadow:var(--shadow-glow);}
-.branch-card:focus-visible{outline:2px solid var(--orange-400);outline-offset:4px;}
-.branch-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-.branch-index{
-  width:42px;height:42px;border-radius:12px;flex:none;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(255,122,26,.12);border:1px solid rgba(255,122,26,.3);
-  font-family:var(--font-display);font-weight:700;color:var(--orange-400);font-size:16px;
-}
-.branch-name{font-family:var(--font-display);font-size:20px;color:var(--ink-000);margin-bottom:2px;}
-.branch-zone{font-size:12.5px;color:var(--ink-500);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
-.branch-meta{display:flex;flex-direction:column;gap:9px;border-top:1px dashed var(--border-700);padding-top:14px;}
-.branch-meta-row{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-300);}
-.branch-meta-row svg{flex:none;width:17px;height:17px;color:var(--orange-400);}
-.branch-meta-row a{color:var(--ink-100);font-weight:600;}
-.branch-meta-row a:hover{color:var(--orange-400);}
-.branch-card-actions{display:flex;gap:10px;margin-top:2px;}
-.branch-card-actions .btn{flex:1;}
-.branch-closed-note{font-size:12px;color:#FF9B9B;}
-
-/* ============= STORY / FOOTER (branch screen) ============= */
-.story-section{padding:10px 0 60px;}
-.story-grid{
-  background:linear-gradient(135deg, var(--surface-800), var(--bg-800));
-  border:1px solid var(--border-700);border-radius:var(--radius-xl);
-  padding:36px 24px;display:grid;gap:24px;
-}
-@media(min-width:800px){.story-grid{grid-template-columns:1.1fr .9fr;padding:44px;align-items:center;}}
-.story-grid h2{font-size:clamp(24px,4vw,32px);color:var(--ink-000);margin:12px 0 12px;}
-.story-grid p{color:var(--ink-300);font-size:15px;line-height:1.65;max-width:52ch;}
-.story-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.story-tags span{
-  font-size:12px;font-weight:700;color:var(--orange-300);
-  background:rgba(255,122,26,.08);border:1px solid rgba(255,122,26,.22);
-  padding:7px 12px;border-radius:999px;
-}
-.site-footer{border-top:1px solid var(--border-700);padding:30px 0 max(30px, env(safe-area-inset-bottom));}
-.footer-grid{display:flex;flex-direction:column;gap:14px;}
-@media(min-width:700px){.footer-grid{flex-direction:row;align-items:center;justify-content:space-between;}}
-.footer-note{color:var(--ink-500);font-size:13px;max-width:40ch;}
-
-/* ============================================================
-   PANTALLA 2 — MENÚ / PEDIDO
-   ============================================================ */
-.view-menu{min-height:100svh;}
-
-.menu-topbar{
-  position:sticky;top:0;z-index:40;
-  background:rgba(10,15,27,.86);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border-700);
-}
-.menu-topbar-row{display:flex;align-items:center;gap:12px;padding:12px 0;}
-.menu-back{
-  width:40px;height:40px;flex:none;border-radius:12px;
-  background:var(--surface-700);border:1px solid var(--border-600);
-  color:var(--ink-100);display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:background .2s;
-}
-.menu-back:hover{background:var(--surface-600);color:var(--orange-400);}
-.menu-branch-info{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25;}
-.mbi-label{font-size:10.5px;color:var(--ink-500);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
-.mbi-name{font-family:var(--font-display);font-size:16px;color:var(--ink-000);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.cart-fab-top{
-  position:relative;width:42px;height:42px;flex:none;border-radius:12px;
-  background:var(--surface-700);border:1px solid var(--border-600);
-  color:var(--ink-100);display:flex;align-items:center;justify-content:center;cursor:pointer;
-  transition:background .2s,border-color .2s;
-}
-.cart-fab-top:hover{border-color:var(--orange-500);color:var(--orange-400);}
-.cart-fab-count{
-  position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 4px;
-  background:var(--orange-500);color:#1A0900;font-size:11px;font-weight:800;
-  border-radius:999px;display:flex;align-items:center;justify-content:center;
-  border:2px solid var(--bg-900);
-}
-.cat-nav{
-  display:flex;gap:8px;overflow-x:auto;padding:0 0 12px;
-  -ms-overflow-style:none;scrollbar-width:none;
-}
-.cat-nav::-webkit-scrollbar{display:none;}
-.cat-nav .container{display:none;}
-.cat-pill{
-  flex:none;padding:9px 16px;border-radius:999px;font-size:13.5px;font-weight:700;
-  background:transparent;border:1px solid var(--border-600);color:var(--ink-300);
-  cursor:pointer;transition:all .2s var(--ease-out);white-space:nowrap;
-  margin-left:20px;
-}
-.cat-nav .cat-pill:first-child{margin-left:20px;}
-@media(min-width:768px){.cat-pill{margin-left:0;}.cat-nav{padding-left:32px;}}
-.cat-pill.is-active{background:var(--orange-500);border-color:var(--orange-500);color:#1A0900;}
-.cat-pill:last-child{margin-right:20px;}
-
-.menu-hero{padding:30px 0 8px;}
-.menu-hero h1{font-size:clamp(28px,6vw,42px);color:var(--ink-000);margin:10px 0 10px;}
-.menu-hero .lede{color:var(--ink-300);font-size:14.5px;max-width:60ch;}
-
-.menu-section{padding:34px 0 6px;scroll-margin-top:120px;}
-.menu-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:18px;}
-.menu-section-head h2{font-size:26px;color:var(--ink-000);}
-.menu-section-head h2 span{color:var(--orange-400);}
-.menu-section-note{font-size:12.5px;color:var(--ink-500);text-align:right;max-width:34ch;}
-
-.product-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-@media(min-width:640px){.product-grid{grid-template-columns:1fr 1fr;}}
-@media(min-width:1040px){.product-grid{grid-template-columns:1fr 1fr 1fr;}}
-
-.product-card{
   background:var(--surface-800);
-  border:1px solid var(--border-700);
-  border-radius:var(--radius-lg);
-  padding:18px;
-  display:flex;flex-direction:column;gap:12px;
-  transition:border-color .2s,transform .2s;
+  border:1px solid var(--line-soft);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  transition:border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
 }
-.product-card:hover{border-color:var(--border-600);}
-.product-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-.product-name{font-family:var(--font-script);font-size:26px;color:var(--ink-000);line-height:1;}
-.product-sub{font-size:12.5px;color:var(--ink-500);margin-top:4px;}
-.product-tag{
-  flex:none;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
-  padding:5px 9px;border-radius:8px;
+.branch-card:hover{border-color:var(--line-gold);transform:translateY(-5px);box-shadow:0 30px 60px -24px rgba(0,0,0,.55);}
+.branch-map-thumb{
+  position:relative;height:132px;width:100%;background:var(--surface-700);
+  filter:grayscale(.55) brightness(.7) contrast(1.05);
+  transition:filter .4s var(--ease);
 }
-.tag-allday{background:rgba(47,212,192,.12);color:var(--teal-400);border:1px solid rgba(47,212,192,.28);}
+.branch-card:hover .branch-map-thumb{filter:grayscale(.15) brightness(.85) contrast(1.05);}
+.branch-map-thumb iframe{width:100%;height:100%;border:0;display:block;pointer-events:none;}
+.branch-map-thumb::after{
+  content:'';position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, var(--surface-800) 100%);
+}
+.branch-index{
+  position:absolute;top:12px;left:12px;z-index:2;
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(5,7,11,.75);backdrop-filter:blur(6px);
+  border:1px solid var(--line-gold);
+  font-family:var(--font-display);font-style:italic;font-size:13px;color:var(--gold-300);
+}
+.branch-badge-float{position:absolute;top:12px;right:12px;z-index:2;}
 
-.variant-list{display:flex;flex-direction:column;gap:8px;}
-.variant-row{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:9px 4px;border-bottom:1px dashed var(--border-700);
-}
-.variant-row:last-child{border-bottom:none;}
-.variant-radio{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13.5px;color:var(--ink-100);}
-.variant-radio input{accent-color:var(--orange-500);width:16px;height:16px;}
-.variant-price{font-weight:700;color:var(--orange-300);font-size:14px;}
+.branch-body{padding:20px 20px 22px;}
+.branch-name{font-size:21px;margin-bottom:3px;}
+.branch-zone{font-size:11.5px;color:var(--orange-400);font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.branch-meta{display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--line-soft);margin-top:15px;padding-top:15px;}
+.branch-meta-row{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink-400);}
+.branch-meta-row svg{flex:none;width:16px;height:16px;color:var(--gold-400);}
+.branch-meta-row a{color:var(--ink-200);font-weight:600;}
+.branch-meta-row a:hover{color:var(--orange-400);}
+.branch-closed-note{font-size:12px;color:#FF9E9E;}
+.branch-card-actions{display:flex;gap:10px;margin-top:18px;}
+.branch-card-actions .btn{flex:1;}
 
-.product-price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:4px;}
-.product-price{font-family:var(--font-display);font-size:19px;color:var(--orange-300);}
-.product-price small{font-family:var(--font-body);font-size:11px;color:var(--ink-500);font-weight:600;}
+/* ============= ESTILO (Brasa vs Broaster) ============= */
+.style-section{padding:20px 0 100px;}
+.style-head{max-width:560px;margin:0 auto 40px;text-align:center;}
+.style-head h2{font-size:clamp(26px,5vw,36px);font-weight:400;}
+.style-head h2 em{font-style:italic;color:var(--orange-400);}
+.style-cols{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--r-lg);overflow:hidden;}
+@media(min-width:720px){.style-cols{grid-template-columns:1fr 1fr;}}
+.style-col{background:var(--surface-800);padding:36px 30px;}
+.style-col-icon{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-gold);display:flex;align-items:center;justify-content:center;color:var(--orange-400);margin-bottom:20px;}
+.style-col h3{font-size:24px;margin-bottom:12px;font-weight:400;}
+.style-col p{color:var(--ink-400);font-size:14.5px;line-height:1.7;}
 
-.qty-add{display:flex;align-items:center;gap:10px;}
-.stepper{display:flex;align-items:center;gap:0;border:1px solid var(--border-600);border-radius:10px;overflow:hidden;}
-.stepper button{
-  width:32px;height:32px;background:var(--surface-700);color:var(--ink-100);border:none;cursor:pointer;
-  font-size:16px;display:flex;align-items:center;justify-content:center;transition:background .15s;
-}
-.stepper button:hover{background:var(--surface-600);color:var(--orange-400);}
-.stepper span{width:26px;text-align:center;font-weight:700;font-size:13.5px;}
-.btn-add{
-  background:var(--surface-700);border:1px solid var(--border-600);color:var(--ink-100);
-  width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .2s var(--ease-out);flex:none;
-}
-.btn-add:hover{background:var(--orange-500);border-color:var(--orange-500);color:#1A0900;transform:scale(1.06);}
-.btn-add-wide{
-  width:auto;padding:0 16px;gap:8px;font-weight:700;font-size:13.5px;
-}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:40px;}
+.tag-cloud span{font-size:11.5px;font-weight:700;color:var(--ink-600);border:1px solid var(--line-soft);padding:7px 13px;border-radius:999px;}
 
-/* combo callout inside bebidas */
-.combo-note{
-  margin-top:26px;background:linear-gradient(135deg, rgba(255,122,26,.1), rgba(47,212,192,.05));
-  border:1px solid var(--border-700);border-radius:var(--radius-md);
-  padding:16px 18px;display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--ink-300);
-}
-.combo-note svg{flex:none;color:var(--orange-400);}
-
-/* ============= CART SHEET / CHECKOUT SHEET ============= */
-.sheet-overlay{
-  position:fixed;inset:0;background:rgba(3,5,9,.65);backdrop-filter:blur(3px);
-  z-index:70;opacity:0;transition:opacity .3s var(--ease-out);
-}
-.sheet-overlay.is-visible{opacity:1;}
-.cart-sheet{
-  position:fixed;left:0;right:0;bottom:0;z-index:80;
-  max-width:520px;margin:0 auto;
-  background:var(--bg-800);
-  border:1px solid var(--border-700);border-bottom:none;
-  border-radius:24px 24px 0 0;
-  box-shadow:0 -20px 60px rgba(0,0,0,.5);
-  padding:10px 18px max(18px, env(safe-area-inset-bottom));
-  transform:translateY(105%);
-  transition:transform .38s var(--ease-out);
-  max-height:88svh;display:flex;flex-direction:column;
-}
-.cart-sheet.is-open{transform:translateY(0);}
-.sheet-handle{width:40px;height:4px;background:var(--border-600);border-radius:999px;margin:2px auto 10px;}
-.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.sheet-head h3{font-size:19px;color:var(--ink-000);}
-.icon-btn{width:34px;height:34px;border-radius:10px;background:var(--surface-700);border:1px solid var(--border-600);color:var(--ink-100);display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.icon-btn:hover{color:var(--orange-400);}
-
-.cart-items{overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:6px;flex:1;}
-.cart-item{
-  display:flex;align-items:center;gap:12px;
-  background:var(--surface-800);border:1px solid var(--border-700);border-radius:14px;padding:11px 12px;
-}
-.cart-item-info{flex:1;min-width:0;}
-.cart-item-name{font-weight:700;font-size:14px;color:var(--ink-100);}
-.cart-item-variant{font-size:12px;color:var(--ink-500);}
-.cart-item-price{font-size:12.5px;color:var(--orange-300);font-weight:700;margin-top:2px;}
-.cart-item-remove{background:none;border:none;color:var(--ink-700);cursor:pointer;padding:4px;}
-.cart-item-remove:hover{color:#FF8A8A;}
-
-.cart-empty{display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:50px 20px;color:var(--ink-700);text-align:center;font-size:14px;}
-.cart-empty svg{opacity:.5;}
-.cart-sheet.is-empty .cart-items{display:none;}
-.cart-sheet.is-empty .cart-empty{display:flex;}
-.cart-sheet.is-empty .cart-footer{display:none;}
-
-.cart-footer{border-top:1px solid var(--border-700);padding-top:14px;margin-top:8px;}
-.cart-total-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:15px;}
-.cart-total-row b{font-family:var(--font-display);font-size:22px;color:var(--orange-300);}
-.btn-full{width:100%;}
-
-.checkout-sheet{max-height:92svh;}
-.checkout-form{overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding-bottom:6px;}
-.field{display:flex;flex-direction:column;gap:7px;}
-.field span{font-size:12.5px;font-weight:700;color:var(--ink-300);}
-.field input,.field textarea{
-  background:var(--surface-800);border:1px solid var(--border-600);border-radius:12px;
-  padding:12px 14px;color:var(--ink-000);font-size:14.5px;font-family:var(--font-body);
-  resize:vertical;
-}
-.field input:focus,.field textarea:focus{outline:2px solid var(--orange-500);outline-offset:1px;border-color:var(--orange-500);}
-.field-group{border:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
-.field-group legend{font-size:12.5px;font-weight:700;color:var(--ink-300);padding:0;margin-bottom:2px;}
-.seg-control{display:flex;gap:8px;}
-.seg-btn{
-  flex:1;padding:11px 10px;border-radius:12px;border:1px solid var(--border-600);
-  background:var(--surface-800);color:var(--ink-300);font-weight:700;font-size:13.5px;cursor:pointer;
-  transition:all .2s var(--ease-out);
-}
-.seg-btn.is-active{background:rgba(255,122,26,.12);border-color:var(--orange-500);color:var(--orange-300);}
-.checkout-summary{
-  background:var(--surface-800);border:1px solid var(--border-700);border-radius:14px;padding:14px;
-  font-size:13px;color:var(--ink-300);display:flex;flex-direction:column;gap:6px;
-}
-.checkout-summary .cs-row{display:flex;justify-content:space-between;}
-.checkout-summary .cs-total{border-top:1px dashed var(--border-600);margin-top:6px;padding-top:8px;font-weight:800;color:var(--ink-000);font-size:15px;}
-.btn-wa{background:linear-gradient(135deg,#3fd47c,#1fae5e);color:#052912;box-shadow:0 10px 30px -8px rgba(37,175,94,.5);}
-
-/* ============= TOAST ============= */
-.toast{
-  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);
-  background:var(--surface-700);border:1px solid var(--border-600);color:var(--ink-000);
-  padding:13px 20px;border-radius:14px;font-size:13.5px;font-weight:600;
-  box-shadow:0 20px 40px -10px rgba(0,0,0,.5);
-  z-index:120;opacity:0;pointer-events:none;transition:all .3s var(--ease-out);
-  max-width:88vw;
-}
-.toast.is-visible{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* ============= CART FAB (mobile) ============= */
-.cart-fab{
-  position:fixed;left:16px;right:16px;bottom:max(16px, env(safe-area-inset-bottom));
-  z-index:60;max-width:488px;margin:0 auto;
-  background:linear-gradient(135deg,var(--orange-400),var(--orange-600));
-  color:#1A0900;border:none;border-radius:16px;
-  padding:15px 18px;display:flex;align-items:center;gap:10px;
-  font-weight:800;font-size:14.5px;cursor:pointer;
-  box-shadow:0 16px 40px -10px rgba(255,122,26,.55);
-  transform:translateY(140%);transition:transform .35s var(--ease-out);
-}
-.cart-fab.is-visible{transform:translateY(0);}
-#cartFabText{flex:1;text-align:left;}
-#cartFabTotal{font-family:var(--font-display);font-size:15px;}
-
-/* reveal-on-scroll base state (JS/GSAP controls final) */
-[data-reveal]{opacity:1;}
+/* ============= FOOTER ============= */
+.site-footer{border-top:1px solid var(--line-soft);padding:34px 0 max(34px, env(safe-area-inset-bottom));}
+.footer-grid{display:flex;flex-direction:column;gap:16px;}
+@media(min-width:700px){.footer-grid{flex-direction:row;align-items:center;justify-content:space-between;}}
+.footer-note{color:var(--ink-600);font-size:12.5px;max-width:42ch;}
 </style>
 </head>
-<body class="grain-bg">
+<body>
+<div class="bg-atmosphere"></div>
 
-<!-- ============= PRELOADER ============= -->
 <div class="preloader" id="preloader" aria-hidden="true">
-  <div class="preloader-ring"></div>
+  <div class="preloader-seal"></div>
   <span class="preloader-text">Gori Chicken</span>
 </div>
 
 <!-- ============================================================
-     PANTALLA 1 — SELECCIÓN DE SUCURSAL
+     PANTALLA 1 — INICIO / SELECCIÓN DE SUCURSAL
      ============================================================ -->
 <main id="view-branches">
 
-  <div class="brand-topbar">
-    <div class="container row">
+  <div class="topbar">
+    <div class="container topbar-row">
       <div class="brand-lockup">
-        <img src="https://i.imgur.com/7L3dwp2.jpeg" alt="Logo Gori Chicken" loading="eager">
-        <div>
-          <div class="name">Gori Chicken</div>
-          <div class="tag">Brasa &amp; Broaster</div>
-        </div>
+        <img src="https://i.imgur.com/7L3dwp2.jpeg" alt="Logo Gori Chicken">
+        <div class="brand-wordmark">Gori Chicken<small>Brasa &amp; Broaster</small></div>
       </div>
-      <span class="social-pill">@gorichicken · Cochabamba</span>
+      <span class="topbar-tag">Cochabamba, Bolivia</span>
     </div>
   </div>
 
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy" data-reveal>
-        <span class="eyebrow">Ahumado · Crocante · Cochabamba</span>
-        <h1>Tu pollo <em>Gori</em>,<br>a tu manera.</h1>
-        <p class="lede">Brasa jugosa y ahumada o broaster crocante recién salido de la olla. Elegí la sucursal más cercana y armá tu pedido en menos de un minuto.</p>
-        <div class="hero-actions">
-          <a href="#branch-grid" class="btn btn-primary">
-            Elegir sucursal y pedir
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="#historia" class="btn btn-ghost">Conocé Gori</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat"><b>4</b><span>Sucursales</span></div>
-          <div class="hero-stat"><b>2</b><span>Estilos: Brasa &amp; Broaster</span></div>
-          <div class="hero-stat"><b>100%</b><span>Ensalada fresca todo el día</span></div>
-        </div>
-      </div>
-
-      <div class="route-card" data-reveal>
-        <div class="route-card-head">
-          <span class="eyebrow">La ruta Gori</span>
-          <span class="live"><i></i>4 puntos activos hoy</span>
-        </div>
-        <svg class="route-svg" id="routeSvg" viewBox="0 0 380 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa ilustrativo con las 4 sucursales de Gori Chicken en Cochabamba">
-          <defs>
-            <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#FF9A45"/>
-              <stop offset="1" stop-color="#FF7A1A" stop-opacity=".3"/>
-            </linearGradient>
-          </defs>
-          <path id="routePath" d="M60 70 C 130 40, 170 90, 190 150 S 260 230, 320 270 C 300 220, 250 190, 210 160 S 90 210, 60 270" stroke="url(#routeGrad)" stroke-width="2" stroke-dasharray="6 7" fill="none" opacity=".55"/>
-          <!-- pins injected via JS: id=pin-0..3 -->
-          <g id="routePins"></g>
+    <div class="container hero-inner">
+      <div class="seal" data-reveal aria-hidden="true">
+        <div class="seal-ring"></div>
+        <svg class="seal-orbit-text" viewBox="0 0 172 172">
+          <defs><path id="orbitPath" d="M86,86 m-68,0 a68,68 0 1,1 136,0 a68,68 0 1,1 -136,0"/></defs>
+          <text font-size="9.2" letter-spacing="3.2" fill="var(--ink-600)" font-family="Inter" font-weight="700">
+            <textPath href="#orbitPath" startOffset="0%">AHUMADO · CROCANTE · GORI CHICKEN · COCHABAMBA · </textPath>
+          </text>
         </svg>
-      </div>
-    </div>
-  </section>
-
-  <section class="branches-section" id="branch-grid">
-    <div class="container">
-      <div class="branches-head" data-reveal>
-        <span class="eyebrow">Paso 1 de 2</span>
-        <h2>Elegí tu sucursal</h2>
-        <p>Mismo menú, misma calidad Gori en las 4 sucursales. Solo cambia la ubicación desde donde te preparamos el pedido.</p>
-      </div>
-      <div class="branch-grid" id="branchGrid"></div>
-    </div>
-  </section>
-
-  <section id="historia" class="story-section">
-    <div class="container story-grid">
-      <div data-reveal>
-        <span class="eyebrow">Lo que nos distingue</span>
-        <h2>Fuego lento, técnica precisa.</h2>
-        <p>Cada presa pasa por brasa de carbón o por nuestro broaster a presión, con el mismo criterio: dorado parejo, jugo adentro, cero atajos. Acompañá tu pollo con guarniciones caseras y una ensalada fresca que ahora servimos todo el día.</p>
-      </div>
-      <div class="story-tags" data-reveal>
-        <span>#GoriChicken</span><span>#Ahumado</span><span>#Crocante</span>
-        <span>#Brasa</span><span>#Broaster</span><span>#PolloGori</span>
-        <span>#Cochabamba</span><span>#GoriLover</span>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="brand-lockup">
-        <img src="https://i.imgur.com/7L3dwp2.jpeg" alt="Logo Gori Chicken">
-        <div>
-          <div class="name">Gori Chicken</div>
-          <div class="tag">Brasa &amp; Broaster · Cochabamba</div>
+        <div class="seal-ring-inner">
+          <svg class="seal-icon" width="46" height="46" viewBox="0 0 24 24" fill="none"><path d="M12 2c1 3-2 4-2 7a3 3 0 1 0 6 0c1.5 1 2 3 2 5a6 6 0 1 1-12 0c0-4 3-5 3-9 1 1 1.5 2 3-3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
       </div>
-      <p class="footer-note">4 sucursales en Cochabamba. Elegí la tuya arriba para ver el menú completo y hacer tu pedido por WhatsApp.</p>
+
+      <span class="eyebrow" data-reveal style="margin-top:28px">Cochabamba · 4 sucursales</span>
+      <h1 data-reveal>El fuego,<br>hecho <em>a tu manera</em>.</h1>
+      <p class="lede" data-reveal>Pollo a la brasa ahumado o broaster crocante, con guarniciones caseras y ensalada fresca todo el día. Elegí la sucursal más cercana y pedí en minutos.</p>
+      <div class="hero-cta" data-reveal>
+        <a href="#branch-grid" class="btn btn-primary">Elegir sucursal</a>
+        <a href="#estilo" class="btn btn-line">Nuestro estilo</a>
+      </div>
+      <div class="hero-divider" data-reveal>Disponible en 4 puntos de la ciudad</div>
     </div>
-  </footer>
+  </section>
+
 </main>
 
-<!-- ============================================================
-     PANTALLA 2 — MENÚ Y PEDIDO
-     ============================================================ -->
-<div id="view-menu" class="view-menu" hidden>
-
-  <header class="menu-topbar" id="menuTopbar">
-    <div class="container menu-topbar-row">
-      <button class="menu-back" id="btnChangeBranch" type="button" aria-label="Cambiar de sucursal">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="menu-branch-info" id="menuBranchInfo">
-        <span class="mbi-label">Pedís desde</span>
-        <span class="mbi-name" id="mbiName">—</span>
-      </div>
-      <button class="cart-fab-top" id="btnOpenCartTop" type="button" aria-label="Ver carrito">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.8h7.2a2 2 0 0 0 2-1.6L20 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.6" fill="currentColor"/><circle cx="17" cy="21" r="1.6" fill="currentColor"/></svg>
-        <span class="cart-fab-count" id="cartCountTop" hidden>0</span>
-      </button>
-    </div>
-    <nav class="cat-nav" id="catNav" aria-label="Categorías del menú"></nav>
-  </header>
-
-  <section class="menu-hero">
-    <div class="container">
-      <span class="eyebrow" id="menuEyebrow">Sucursal seleccionada</span>
-      <h1 id="menuHeroTitle">Menú Gori Chicken</h1>
-      <p id="menuHeroSub" class="lede">Armá tu pedido: sumá al carrito y confirmalo por WhatsApp directo con tu sucursal.</p>
-    </div>
-  </section>
-
-  <main class="container" id="menuContent"></main>
-
-  <div style="height:110px"></div>
-</div>
-
-<!-- ============= CARRITO (bottom sheet) ============= -->
-<div class="sheet-overlay" id="cartOverlay" hidden></div>
-<aside class="cart-sheet" id="cartSheet" aria-hidden="true" aria-label="Carrito de compra">
-  <div class="sheet-handle" aria-hidden="true"></div>
-  <div class="sheet-head">
-    <h3>Tu pedido</h3>
-    <button class="icon-btn" id="btnCloseCart" aria-label="Cerrar carrito">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-empty" id="cartEmpty">
-    <svg width="46" height="46" viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.8h7.2a2 2 0 0 0 2-1.6L20 8H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <p>Tu carrito está vacío.<br>Sumá tu primer platillo Gori.</p>
-  </div>
-  <div class="cart-footer" id="cartFooter">
-    <div class="cart-total-row"><span>Subtotal</span><b id="cartTotal">Bs 0.00</b></div>
-    <button class="btn btn-primary btn-full" id="btnCheckout" type="button">Continuar pedido</button>
-  </div>
-</aside>
-
-<!-- ============= CHECKOUT MODAL ============= -->
-<div class="sheet-overlay" id="checkoutOverlay" hidden></div>
-<aside class="cart-sheet checkout-sheet" id="checkoutSheet" aria-hidden="true" aria-label="Confirmar pedido">
-  <div class="sheet-handle" aria-hidden="true"></div>
-  <div class="sheet-head">
-    <h3>Confirmar pedido</h3>
-    <button class="icon-btn" id="btnCloseCheckout" aria-label="Cerrar">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-  <form class="checkout-form" id="checkoutForm">
-    <label class="field">
-      <span>Tu nombre</span>
-      <input type="text" id="cName" name="name" placeholder="Ej. María Fernández" required autocomplete="name">
-    </label>
-
-    <fieldset class="field-group">
-      <legend>Tipo de entrega</legend>
-      <div class="seg-control" id="deliverySeg">
-        <button type="button" class="seg-btn is-active" data-delivery="pickup">Recojo en local</button>
-        <button type="button" class="seg-btn" data-delivery="delivery">Delivery</button>
-      </div>
-    </fieldset>
-
-    <label class="field" id="addressField" hidden>
-      <span>Dirección de entrega</span>
-      <input type="text" id="cAddress" name="address" placeholder="Calle, número, referencia">
-    </label>
-
-    <fieldset class="field-group">
-      <legend>Método de pago</legend>
-      <div class="seg-control" id="paymentSeg">
-        <button type="button" class="seg-btn is-active" data-payment="Efectivo">Efectivo</button>
-        <button type="button" class="seg-btn" data-payment="QR">QR</button>
-      </div>
-    </fieldset>
-
-    <label class="field">
-      <span>Notas (opcional)</span>
-      <textarea id="cNotes" name="notes" rows="2" placeholder="Ej. sin picante, poco sal..."></textarea>
-    </label>
-
-    <div class="checkout-summary" id="checkoutSummary"></div>
-
-    <button type="submit" class="btn btn-primary btn-full btn-wa">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.9 9.9 0 0 0 4.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2m5.8 14.03c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.72-2.08.98-2.37c.24-.26.53-.33.71-.33h.51c.16 0 .38-.02.58.45.24.58.82 1.99.9 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.13-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36" /></svg>
-      Enviar por WhatsApp
-    </button>
-  </form>
-</aside>
-
-<!-- ============= TOAST ============= -->
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<!-- ============= FAB CARRITO (menu view, mobile) ============= -->
-<button class="cart-fab" id="btnOpenCartFab" type="button" hidden>
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.8h7.2a2 2 0 0 0 2-1.6L20 8H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.6" fill="currentColor"/><circle cx="17" cy="21" r="1.6" fill="currentColor"/></svg>
-  <span id="cartFabText">Ver pedido</span>
-  <b id="cartFabTotal">Bs 0.00</b>
-</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>
-(function(){
-"use strict";
-
-/* ============================================================
-   1. DATOS
-   ============================================================ */
-const BRANCHES = [
-  {
-    id:"central",
-    name:"Gori Chicken Central",
-    zone:"Parque Lincoln",
-    address:"A media cuadra al norte del Parque Lincoln, Av. Melchor Pérez de Olguín",
-    phone:"62973233",
-    wa:"59162973233",
-    closedDay:2,
-    closedLabel:"Cerrado los martes",
-    mapsUrl:"https://maps.app.goo.gl/qTRNPmmRy2tmHJws5",
-    pin:{x:60,y:70}
-  },
-  {
-    id:"prado",
-    name:"Gori Chicken El Prado",
-    zone:"El Prado",
-    address:"Av. Ballivián (El Prado), Cochabamba",
-    phone:"77448777",
-    wa:"59177448777",
-    closedDay:0,
-    closedLabel:"Cerrado los domingos",
-    mapsUrl:"https://maps.app.goo.gl/Qz8Gdqy9eWDABbTd6",
-    pin:{x:320,y:270}
-  },
-  {
-    id:"recoleta",
-    name:"Gori Chicken Recoleta",
-    zone:"Recoleta",
-    address:"Zona Recoleta, Cochabamba",
-    phone:"74564878",
-    wa:"59174564878",
-    closedDay:1,
-    closedLabel:"Cerrado los lunes",
-    mapsUrl:"https://maps.app.goo.gl/hFJZJBJWcPAdDeSw7",
-    pin:{x:210,y:160}
-  },
-  {
-    id:"centro",
-    name:"Gori Chicken Centro",
-    zone:"Centro",
-    address:"Zona Centro, Cochabamba",
-    phone:"77406077",
-    wa:"59177406077",
-    closedDay:0,
-    closedLabel:"Cerrado los domingos",
-    mapsUrl:"https://maps.app.goo.gl/NmEmUHhzaKr5jP4T8",
-    pin:{x:60,y:270}
-  }
-];
-
-const MENU = [
-  {
-    id:"brasa", title:"Brasa Gori", icon:"flame",
-    note:"Cocción lenta a la brasa. Elegí tu porción.",
-    items:[
-      {id:"brasa-octavo", name:"Octavo", sub:"1 presa + 2 guarniciones", type:"simple", price:20},
-      {id:"brasa-cuarto", name:"Cuarto", sub:"2 presas + 2 guarniciones", type:"simple", price:28},
-      {id:"brasa-trica", name:"Trica", sub:"3 presas + 2 guarniciones", type:"simple", price:36},
-      {id:"brasa-medio", name:"Medio", sub:"Elegí con o sin guarniciones", type:"variants", variants:[
-        {key:"sin", label:"Sin guarniciones", price:40},
-        {key:"con", label:"Con guarniciones", price:55}
-      ]},
-      {id:"brasa-entero", name:"Entero", sub:"Elegí con o sin guarniciones", type:"variants", variants:[
-        {key:"sin", label:"Sin guarniciones", price:84},
-        {key:"con", label:"Con guarniciones", price:110}
-      ]}
-    ]
-  },
-  {
-    id:"broaster", title:"Broaster Gori", icon:"crispy",
-    note:"Crocante por fuera, jugoso por dentro.",
-    items:[
-      {id:"broaster-octavo", name:"Octavo", sub:"1 presa + 2 guarniciones", type:"simple", price:20},
-      {id:"broaster-cuarto", name:"Cuarto", sub:"2 presas + 2 guarniciones", type:"simple", price:28},
-      {id:"broaster-trica", name:"Trica", sub:"3 presas + 2 guarniciones", type:"simple", price:36},
-      {id:"broaster-medio", name:"Medio", sub:"Elegí con o sin guarniciones", type:"variants", variants:[
-        {key:"sin", label:"Sin guarniciones", price:40},
-        {key:"con", label:"Con guarniciones", price:55}
-      ]},
-      {id:"broaster-entero", name:"Entero", sub:"Elegí con o sin guarniciones", type:"variants", variants:[
-        {key:"sin", label:"Sin guarniciones", price:84},
-        {key:"con", label:"Con guarniciones", price:110}
-      ]}
-    ]
-  },
-  {
-    id:"extras", title:"Extras Gori", icon:"leaf",
-    note:"Guarniciones extra para acompañar.",
-    items:[
-      {id:"extra-papas", name:"Papas Rústicas", sub:"Porción individual", type:"simple", price:10},
-      {id:"extra-arroz", name:"Arroz Chaufa", sub:"Porción individual", type:"simple", price:10},
-      {id:"extra-ensalada", name:"Ensalada Gorilla", sub:"Fresca — disponible todo el día", type:"simple", price:10, tag:"Todo el día"},
-      {id:"extra-fideo", name:"Fideo Gorilla", sub:"Salteado, porción individual", type:"simple", price:10},
-      {id:"extra-platanitos", name:"Platanitos Gorilla", sub:"Porción individual", type:"simple", price:10}
-    ]
-  },
-  {
-    id:"bebidas", title:"Refrescos", icon:"drink",
-    note:"Para acompañar tu pollo Gori.",
-    items:[
-      {id:"bebida-oro", name:"Oro", sub:"1 litro", type:"simple", price:10},
-      {id:"bebida-delvalle", name:"Del Valle", sub:"1 litro", type:"simple", price:12},
-      {id:"bebida-coca", name:"Coca-Cola", sub:"500 ml", type:"simple", price:8},
-      {id:"bebida-pepsi", name:"Pepsi", sub:"500 ml", type:"simple", price:8},
-      {id:"bebida-fanta", name:"Fanta", sub:"500 ml", type:"simple", price:8},
-      {id:"bebida-oriental", name:"Oriental", sub:"500 ml", type:"simple", price:8},
-      {id:"bebida-tostada", name:"Tostada Gorilla", sub:"Elegí el tamaño", type:"variants", variants:[
-        {key:"1l", label:"1 litro", price:10},
-        {key:"2l", label:"2 litros", price:20}
-      ]},
-      {id:"bebida-horchata", name:"Horchata Gorilla", sub:"Elegí el tamaño", type:"variants", variants:[
-        {key:"1l", label:"1 litro", price:10},
-        {key:"2l", label:"2 litros", price:20}
-      ]},
-      {id:"bebida-fanta300", name:"Fanta", sub:"300 ml", type:"simple", price:5},
-      {id:"bebida-coca300", name:"Coca-Cola", sub:"300 ml", type:"simple", price:5},
-      {id:"bebida-sprite300", name:"Sprite", sub:"300 ml", type:"simple", price:5}
-    ]
-  }
-];
-
-const ICONS = {
-  flame:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2c1 3-2 4-2 7a3 3 0 1 0 6 0c1.5 1 2 3 2 5a6 6 0 1 1-12 0c0-4 3-5 3-9 1 1 1.5 2 3-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
-  crispy:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 14c-2-3-1-7 2-9 1 2 3 2 4 1 2 3 5 3 6 6 1.5 4-2 9-7 9s-7-4-5-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
-  leaf:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 19c8 1 14-5 14-14C10 5 4 11 5 19Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 18c3-4 6-7 12-11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
-  drink:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 3h10l-1.2 15.5A2 2 0 0 1 13.8 20h-3.6a2 2 0 0 1-2-1.5L7 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6.3 8h11.4" stroke="currentColor" stroke-width="1.6"/></svg>'
-};
-
-/* ============================================================
-   2. ESTADO
-   ============================================================ */
-const state = {
-  branch: JSON.parse(localStorage.getItem("gori.branch") || "null"),
-  cart: JSON.parse(localStorage.getItem("gori.cart") || "[]")
-};
-
-function saveCart(){ localStorage.setItem("gori.cart", JSON.stringify(state.cart)); }
-function saveBranch(){ localStorage.setItem("gori.branch", JSON.stringify(state.branch)); }
-function money(n){ return "Bs " + n.toFixed(2); }
-function todayIsClosed(branch){ return new Date().getDay() === branch.closedDay; }
-
-/* ============================================================
-   3. RUTA / PINES SVG (branch screen signature)
-   ============================================================ */
-function renderRoutePins(){
-  const g = document.getElementById("routePins");
-  if(!g) return;
-  g.innerHTML = BRANCHES.map((b,i)=>{
-    const closed = todayIsClosed(b);
-    return `<g class="route-pin" data-idx="${i}" style="cursor:pointer" tabindex="0" role="img" aria-label="${b.name}, ${closed? 'cerrado hoy':'abierto hoy'}">
-      <circle cx="${b.pin.x}" cy="${b.pin.y}" r="15" fill="${closed?'#2C3B58':'#FF7A1A'}" opacity="0.95"/>
-      <circle cx="${b.pin.x}" cy="${b.pin.y}" r="15" fill="none" stroke="${closed?'#5B6580':'#FFB673'}" stroke-width="1.5" opacity=".6"/>
-      <text x="${b.pin.x}" y="${b.pin.y+4.5}" text-anchor="middle" class="route-pin-num">${i+1}</text>
-      <text x="${b.pin.x}" y="${b.pin.y+30}" text-anchor="middle" class="route-pin-label">${b.zone}</text>
-    </g>`;
-  }).join("");
-}
-
-/* ============================================================
-   4. RENDER — sucursales
-   ============================================================ */
-function renderBranches(){
-  const wrap = document.getElementById("branchGrid");
-  wrap.innerHTML = BRANCHES.map((b,i)=>{
-    const closed = todayIsClosed(b);
-    return `
-    <article class="branch-card" data-branch="${b.id}" tabindex="0" role="button" aria-label="Elegir ${b.name}">
-      <div class="branch-card-top">
-        <div>
-          <div class="branch-index">${i+1}</div>
-        </div>
-        ${closed
-          ? `<span class="badge badge-closed"><i class="badge-dot"></i>Cerrado hoy</span>`
-          : `<span class="badge badge-open"><i class="badge-dot"></i>Abierto hoy</span>`}
-      </div>
-      <div>
-        <div class="branch-name">${b.name}</div>
-        <div class="branch-zone">${b.zone}</div>
-      </div>
-      <div class="branch-meta">
-        <div class="branch-meta-row">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.8"/></svg>
-          <span>${b.address}</span>
-        </div>
-        <div class="branch-meta-row">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 5c0 8.3 6.7 15 15 15l3-4-6-3-2 2c-2.5-1.2-4.8-3.5-6-6l2-2-3-6-4 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-          <a href="tel:+591${b.phone}" onclick="event.stopPropagation()">${b.phone}</a>
-        </div>
-        <div class="branch-meta-row">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span class="branch-closed-note">${b.closedLabel}</span>
-        </div>
-      </div>
-      <div class="branch-card-actions">
-        <a class="btn btn-ghost btn-sm" href="${b.mapsUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Cómo llegar</a>
-        <button class="btn btn-primary btn-sm" type="button" data-select="${b.id}">Ver menú y pedir</button>
-      </div>
-    </article>`;
-  }).join("");
-
-  wrap.querySelectorAll(".branch-card").forEach(card=>{
-    card.addEventListener("click", ()=> selectBranch(card.dataset.branch));
-    card.addEventListener("keydown", e=>{ if(e.key==="Enter") selectBranch(card.dataset.branch); });
-  });
-}
-
-function selectBranch(id){
-  const b = BRANCHES.find(x=>x.id===id);
-  if(!b) return;
-  state.branch = b;
-  saveBranch();
-  goToMenu();
-}
-
-/* ============================================================
-   5. RENDER — categorías + productos
-   ============================================================ */
-function renderCatNav(){
-  const nav = document.getElementById("catNav");
-  nav.innerHTML = MENU.map(c=>`<button class="cat-pill" data-cat="${c.id}">${c.title}</button>`).join("");
-  nav.querySelectorAll(".cat-pill").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      document.getElementById("cat-"+btn.dataset.cat).scrollIntoView({behavior:"smooth", block:"start"});
-    });
-  });
-}
-
-function variantRadioGroup(item){
-  return item.variants.map((v,i)=>`
-    <label class="variant-row">
-      <span class="variant-radio">
-        <input type="radio" name="${item.id}-variant" value="${v.key}" ${i===0?"checked":""}>
-        ${v.label}
-      </span>
-      <span class="variant-price">${money(v.price)}</span>
-    </label>`).join("");
-}
-
-function productCard(item){
-  if(item.type === "simple"){
-    return `
-    <div class="product-card" data-item="${item.id}">
-      <div class="product-card-top">
-        <div>
-          <div class="product-name">${item.name}</div>
-          <div class="product-sub">${item.sub}</div>
-        </div>
-        ${item.tag ? `<span class="product-tag tag-allday">${item.tag}</span>` : ""}
-      </div>
-      <div class="product-price-row">
-        <span class="product-price">${money(item.price)}</span>
-        <button class="btn-add btn-add-wide" data-add-simple="${item.id}">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-          Agregar
-        </button>
-      </div>
-    </div>`;
-  }
-  return `
-    <div class="product-card" data-item="${item.id}">
-      <div class="product-card-top">
-        <div>
-          <div class="product-name">${item.name}</div>
-          <div class="product-sub">${item.sub}</div>
-        </div>
-      </div>
-      <div class="variant-list">${variantRadioGroup(item)}</div>
-      <div class="product-price-row">
-        <span class="product-price" style="font-size:12.5px;color:var(--ink-500);font-weight:600;">Elegí una opción y sumá</span>
-        <button class="btn-add btn-add-wide" data-add-variant="${item.id}">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-          Agregar
-        </button>
-      </div>
-    </div>`;
-}
-
-function renderMenuContent(){
-  const wrap = document.getElementById("menuContent");
-  wrap.innerHTML = MENU.map(cat=>`
-    <section class="menu-section" id="cat-${cat.id}" data-reveal>
-      <div class="menu-section-head">
-        <h2>${ICONS[cat.icon]||""} <span>${cat.title}</span></h2>
-        <span class="menu-section-note">${cat.note}</span>
-      </div>
-      <div class="product-grid">
-        ${cat.items.map(it=>productCard(it)).join("")}
-      </div>
-      ${cat.id==="bebidas" ? `<div class="combo-note">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2c1 3-2 4-2 7a3 3 0 1 0 6 0c1.5 1 2 3 2 5a6 6 0 1 1-12 0c0-4 3-5 3-9 1 1 1.5 2 3-3Z" stroke="currentColor" stroke-width="1.6"/></svg>
-        <span>¿Sabías que? Nuestra ensalada Gorilla ahora se sirve <b>todo el día</b>, para que tu combo perfecto se disfrute a cualquier hora.</span>
-      </div>` : ""}
-    </section>
-  `).join("");
-
-  wrap.querySelectorAll(".menu-section-head h2").forEach(h=>{
-    h.style.display="flex"; h.style.alignItems="center"; h.style.gap="10px";
-  });
-
-  bindProductEvents();
-}
-
-function bindProductEvents(){
-  document.querySelectorAll("[data-add-simple]").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const item = findItem(btn.dataset.addSimple);
-      addToCart({
-        cartId: item.id,
-        name: item.name,
-        variantLabel: item.sub,
-        price: item.price,
-        qty: 1
-      });
-      pulse(btn);
-    });
-  });
-  document.querySelectorAll("[data-add-variant]").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      const item = findItem(btn.dataset.addVariant);
-      const card = btn.closest(".product-card");
-      const checked = card.querySelector('input[name="'+item.id+'-variant"]:checked');
-      const variant = item.variants.find(v=>v.key===checked.value);
-      addToCart({
-        cartId: item.id+"-"+variant.key,
-        name: item.name,
-        variantLabel: variant.label,
-        price: variant.price,
-        qty: 1
-      });
-      pulse(btn);
-    });
-  });
-}
-
-function findItem(id){
-  for(const cat of MENU){ const f = cat.items.find(i=>i.id===id); if(f) return f; }
-  return null;
-}
-
-function pulse(el){
-  if(window.gsap){
-    gsap.fromTo(el, {scale:1}, {scale:1.12, duration:.12, yoyo:true, repeat:1, ease:"power1.out"});
-  }
-}
-
-/* ============================================================
-   6. CARRITO
-   ============================================================ */
-function addToCart(entry){
-  const existing = state.cart.find(c=>c.cartId===entry.cartId);
-  if(existing){ existing.qty += 1; }
-  else { state.cart.push(entry); }
-  saveCart();
-  renderCart();
-  showToast(entry.name + " agregado al pedido");
-  bumpFab();
-}
-
-function changeQty(cartId, delta){
-  const it = state.cart.find(c=>c.cartId===cartId);
-  if(!it) return;
-  it.qty += delta;
-  if(it.qty<=0){ state.cart = state.cart.filter(c=>c.cartId!==cartId); }
-  saveCart();
-  renderCart();
-}
-
-function cartTotal(){ return state.cart.reduce((s,c)=>s+c.price*c.qty,0); }
-function cartCount(){ return state.cart.reduce((s,c)=>s+c.qty,0); }
-
-function renderCart(){
-  const items = document.getElementById("cartItems");
-  const sheet = document.getElementById("cartSheet");
-  const total = cartTotal();
-  const count = cartCount();
-
-  items.innerHTML = state.cart.map(c=>`
-    <div class="cart-item">
-      <div class="cart-item-info">
-        <div class="cart-item-name">${c.name}</div>
-        <div class="cart-item-variant">${c.variantLabel}</div>
-        <div class="cart-item-price">${money(c.price*c.qty)}</div>
-      </div>
-      <div class="stepper">
-        <button data-qty-minus="${c.cartId}" aria-label="Quitar uno">−</button>
-        <span>${c.qty}</span>
-        <button data-qty-plus="${c.cartId}" aria-label="Sumar uno">+</button>
-      </div>
-      <button class="cart-item-remove" data-remove="${c.cartId}" aria-label="Eliminar">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2m-8 0 1 13a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-      </button>
-    </div>`).join("");
-
-  sheet.classList.toggle("is-empty", state.cart.length===0);
-  document.getElementById("cartTotal").textContent = money(total);
-
-  items.querySelectorAll("[data-qty-minus]").forEach(b=>b.addEventListener("click", ()=>changeQty(b.dataset.qtyMinus,-1)));
-  items.querySelectorAll("[data-qty-plus]").forEach(b=>b.addEventListener("click", ()=>changeQty(b.dataset.qtyPlus,1)));
-  items.querySelectorAll("[data-remove]").forEach(b=>b.addEventListener("click", ()=>{
-    state.cart = state.cart.filter(c=>c.cartId!==b.dataset.remove);
-    saveCart(); renderCart();
-  }));
-
-  const topCount = document.getElementById("cartCountTop");
-  topCount.textContent = count;
-  topCount.hidden = count===0;
-
-  const fab = document.getElementById("btnOpenCartFab");
-  document.getElementById("cartFabTotal").textContent = money(total);
-  document.getElementById("cartFabText").textContent = count + (count===1?" platillo":" platillos");
-  fab.classList.toggle("is-visible", count>0);
-  fab.hidden = count===0;
-}
-
-function bumpFab(){
-  const fab = document.getElementById("btnOpenCartFab");
-  if(window.gsap && !fab.hidden){
-    gsap.fromTo(fab, {scale:1}, {scale:1.04, duration:.15, yoyo:true, repeat:1});
-  }
-}
-
-function openSheet(sheetEl, overlayEl){
-  overlayEl.hidden = false;
-  requestAnimationFrame(()=>{ overlayEl.classList.add("is-visible"); sheetEl.classList.add("is-open"); });
-  sheetEl.setAttribute("aria-hidden","false");
-  document.body.style.overflow="hidden";
-}
-function closeSheet(sheetEl, overlayEl){
-  overlayEl.classList.remove("is-visible");
-  sheetEl.classList.remove("is-open");
-  sheetEl.setAttribute("aria-hidden","true");
-  setTimeout(()=>{ overlayEl.hidden = true; }, 350);
-  document.body.style.overflow="";
-}
-
-const cartSheet = document.getElementById("cartSheet");
-const cartOverlay = document.getElementById("cartOverlay");
-document.getElementById("btnOpenCartTop").addEventListener("click", ()=>openSheet(cartSheet,cartOverlay));
-document.getElementById("btnOpenCartFab").addEventListener("click", ()=>openSheet(cartSheet,cartOverlay));
-document.getElementById("btnCloseCart").addEventListener("click", ()=>closeSheet(cartSheet,cartOverlay));
-cartOverlay.addEventListener("click", ()=>{
-  if(!checkoutSheetOpen) closeSheet(cartSheet,cartOverlay);
-});
-
-/* ============================================================
-   7. CHECKOUT
-   ============================================================ */
-const checkoutSheet = document.getElementById("checkoutSheet");
-const checkoutOverlay = document.getElementById("checkoutOverlay");
-let deliveryType = "pickup";
-let paymentType = "Efectivo";
-let checkoutSheetOpen = false;
-
-document.getElementById("btnCheckout").addEventListener("click", ()=>{
-  if(state.cart.length===0) return;
-  closeSheet(cartSheet,cartOverlay);
-  renderCheckoutSummary();
-  setTimeout(()=>{ openSheet(checkoutSheet, checkoutOverlay); checkoutSheetOpen=true; }, 200);
-});
-document.getElementById("btnCloseCheckout").addEventListener("click", ()=>{ closeSheet(checkoutSheet,checkoutOverlay); checkoutSheetOpen=false; });
-checkoutOverlay.addEventListener("click", ()=>{ closeSheet(checkoutSheet,checkoutOverlay); checkoutSheetOpen=false; });
-
-document.getElementById("deliverySeg").addEventListener("click", e=>{
-  const btn = e.target.closest(".seg-btn"); if(!btn) return;
-  deliveryType = btn.dataset.delivery;
-  document.querySelectorAll("#deliverySeg .seg-btn").forEach(b=>b.classList.toggle("is-active", b===btn));
-  document.getElementById("addressField").hidden = deliveryType!=="delivery";
-  document.getElementById("cAddress").required = deliveryType==="delivery";
-});
-document.getElementById("paymentSeg").addEventListener("click", e=>{
-  const btn = e.target.closest(".seg-btn"); if(!btn) return;
-  paymentType = btn.dataset.payment;
-  document.querySelectorAll("#paymentSeg .seg-btn").forEach(b=>b.classList.toggle("is-active", b===btn));
-});
-
-function renderCheckoutSummary(){
-  const box = document.getElementById("checkoutSummary");
-  const total = cartTotal();
-  box.innerHTML = state.cart.map(c=>`
-    <div class="cs-row"><span>${c.qty}× ${c.name} (${c.variantLabel})</span><span>${money(c.price*c.qty)}</span></div>
-  `).join("") + `<div class="cs-row cs-total"><span>Total</span><span>${money(total)}</span></div>`;
-}
-
-document.getElementById("checkoutForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const name = document.getElementById("cName").value.trim();
-  const address = document.getElementById("cAddress").value.trim();
-  const notes = document.getElementById("cNotes").value.trim();
-  if(!name){ document.getElementById("cName").focus(); return; }
-  if(deliveryType==="delivery" && !address){ document.getElementById("cAddress").focus(); return; }
-
-  const b = state.branch;
-  const lines = [];
-  lines.push(`🍗 *Nuevo pedido — ${b.name}*`);
-  lines.push("");
-  lines.push(`*Cliente:* ${name}`);
-  lines.push(`*Entrega:* ${deliveryType==="delivery" ? "Delivery — " + address : "Recojo en local ("+b.zone+")"}`);
-  lines.push(`*Pago:* ${paymentType}`);
-  lines.push("");
-  lines.push("*Pedido:*");
-  state.cart.forEach(c=>{
-    lines.push(`• ${c.qty}x ${c.name} (${c.variantLabel}) — ${money(c.price*c.qty)}`);
-  });
-  lines.push("");
-  lines.push(`*Total: ${money(cartTotal())}*`);
-  if(notes) lines.push(`\n*Notas:* ${notes}`);
-  lines.push("\n_Pedido generado desde la web de Gori Chicken_");
-
-  const text = encodeURIComponent(lines.join("\n"));
-  const url = `https://wa.me/${b.wa}?text=${text}`;
-  window.open(url, "_blank", "noopener");
-
-  closeSheet(checkoutSheet, checkoutOverlay);
-  checkoutSheetOpen = false;
-  showToast("¡Pedido enviado! Confirmalo por WhatsApp");
-});
-
-/* ============================================================
-   8. TOAST
-   ============================================================ */
-let toastTimer;
-function showToast(msg){
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.classList.add("is-visible");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=> el.classList.remove("is-visible"), 2400);
-}
-
-/* ============================================================
-   9. NAVEGACIÓN ENTRE VISTAS
-   ============================================================ */
-function goToMenu(){
-  if(!state.branch) return;
-  document.getElementById("view-branches").hidden = true;
-  const viewMenu = document.getElementById("view-menu");
-  viewMenu.hidden = false;
-  document.getElementById("mbiName").textContent = state.branch.name + " · " + state.branch.zone;
-  document.getElementById("menuEyebrow").textContent = "Pedís desde " + state.branch.zone;
-  document.getElementById("menuHeroTitle").textContent = "Menú Gori Chicken";
-  window.scrollTo({top:0, behavior:"instant"});
-  history.replaceState(null,"","#menu/"+state.branch.id);
-  animateReveal(viewMenu);
-}
-function goToBranches(){
-  document.getElementById("view-menu").hidden = true;
-  document.getElementById("view-branches").hidden = false;
-  window.scrollTo({top:0, behavior:"instant"});
-  history.replaceState(null,"","#sucursales");
-}
-document.getElementById("btnChangeBranch").addEventListener("click", goToBranches);
-
-/* ============================================================
-   10. ANIMACIONES
-   ============================================================ */
-function animateReveal(scope){
-  if(!window.gsap) return;
-  const els = scope.querySelectorAll("[data-reveal]");
-  gsap.fromTo(els, {opacity:0, y:16}, {opacity:1, y:0, duration:.5, stagger:.06, ease:"power2.out"});
-}
-
-function initScrollReveals(){
-  if(!window.gsap || !window.ScrollTrigger) return;
-  gsap.registerPlugin(ScrollTrigger);
-  document.querySelectorAll("#view-branches [data-reveal]").forEach(el=>{
-    gsap.fromTo(el, {opacity:0, y:18}, {
-      opacity:1, y:0, duration:.5, ease:"power1.out",
-      scrollTrigger:{trigger:el, start:"top 88%", toggleActions:"play none none reverse"}
-    });
-  });
-}
-
-function initRouteDraw(){
-  if(!window.gsap) return;
-  const path = document.getElementById("routePath");
-  if(!path) return;
-  const len = path.getTotalLength();
-  path.style.strokeDasharray = len;
-  path.style.strokeDashoffset = len;
-  gsap.to(path, {strokeDashoffset:0, duration:1.6, ease:"power2.inOut", delay:.3});
-  gsap.fromTo("#routePins .route-pin", {opacity:0, scale:.4}, {opacity:1, scale:1, duration:.5, stagger:.12, delay:.6, ease:"back.out(2)"});
-}
-
-/* ============================================================
-   11. INIT
-   ============================================================ */
-function init(){
-  renderRoutePins();
-  renderBranches();
-  renderCatNav();
-  renderMenuContent();
-  renderCart();
-
-  if(state.branch){
-    goToMenu();
-  } else {
-    animateReveal(document.getElementById("view-branches"));
-  }
-
-  requestAnimationFrame(()=>{
-    initRouteDraw();
-    initScrollReveals();
-  });
-
-  setTimeout(()=>{
-    document.getElementById("preloader").classList.add("is-hidden");
-  }, 550);
-}
-
-document.addEventListener("DOMContentLoaded", init);
-})();
-</script>
 </body>
 </html>
