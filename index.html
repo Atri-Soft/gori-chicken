@@ -284,12 +284,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .bhero-pin .pin-ic svg{width:12px;height:12px;color:#1A0900;}
 .bhero-pin .pin-text{font-family:var(--mono);font-size:.7rem;color:var(--text-soft);letter-spacing:.02em;}
 .bhero-pin .pin-text b{color:var(--ember-light);font-weight:700;}
-.bhero-strip{
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;
-  font-family:var(--mono);font-size:.72rem;color:var(--muted);
-}
-.bhero-strip .sep{color:var(--muted-2);}
-.bhero-strip .ember-txt{color:var(--ember-light);font-weight:600;}
 #bhero h1{font-size:clamp(2.3rem,6.5vw,3.6rem);font-weight:400;letter-spacing:-.008em;max-width:14ch;}
 #bhero h1 em{font-style:italic;font-weight:500;color:var(--ember-light);}
 #bhero .lede{margin-top:16px;font-size:1.02rem;color:var(--muted);max-width:52ch;line-height:1.65;}
@@ -570,10 +564,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <div class="container">
       <div class="bhero-pin">
         <span class="pin-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12Z"/><circle cx="12" cy="9" r="2.2"/></svg></span>
-        <span class="pin-text">Estás viendo <b id="pinZone">Zona</b> · Cochabamba, Bolivia</span>
-      </div>
-      <div class="bhero-strip">
-        <span class="ember-txt" id="bheroBranchName">Gori Chicken</span><span class="sep">·</span><span id="bheroZone">Zona</span><span class="sep">·</span><span>Cochabamba</span>
+        <span class="pin-text"><b id="bheroBranchName">Gori Chicken</b> · <span id="bheroZone">Zona</span>, Cochabamba</span>
       </div>
       <h1>El fuego,<br>hecho <em>a tu manera</em>.</h1>
       <p class="lede">Brasa ahumada y broaster crocante, con guarniciones caseras y ensalada fresca todo el día en esta sucursal.</p>
@@ -891,7 +882,7 @@ function enterBranch(id){
   history.replaceState(null,"","#"+b.id);
 
   if(window.gsap){
-    gsap.fromTo("#bhero .bhero-strip, #bhero h1, #bhero .lede, #bhero .bhero-actions", {opacity:0,y:16}, {opacity:1,y:0,duration:.55,stagger:.07,ease:"power2.out"});
+    gsap.fromTo("#bhero .bhero-pin, #bhero h1, #bhero .lede, #bhero .bhero-actions", {opacity:0,y:16}, {opacity:1,y:0,duration:.55,stagger:.07,ease:"power2.out"});
   }
   initScrollReveals();
   updateOrderbar();
@@ -915,7 +906,6 @@ function populateBranchPage(b){
   document.getElementById("bheroBranchName").textContent = b.name;
   document.getElementById("bheroZone").textContent = b.zone;
   document.getElementById("bheroMap").src = mapEmbedSrc(b.address);
-  document.getElementById("pinZone").textContent = b.zone;
   document.getElementById("statusValue").textContent = closed ? "Cerrado hoy" : "Abierto hoy";
   document.getElementById("statusDot").classList.toggle("closed", closed);
   document.getElementById("closedDayValue").textContent = b.closedLabel;
